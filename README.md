@@ -1,6 +1,6 @@
 # Deep Metric Similarity Clustering
 
-This repository contains Pytorch code for the deep metric similarity clustering (DMSC) method, published in the ICDATA 2020 paper "Deep Metric Similarity Clustering". Results of this code is an open-sourced implemenation for reproducing the published results.
+This repository contains Pytorch code for the deep metric similarity clustering (DMSC) method, published in the ICDATA 2020 paper "Deep Metric Similarity Clustering". Results of this code is an open-sourced implementation for reproducing the published results.
 
 If you use this code/model for your research, please cite the following paper:
 ```
