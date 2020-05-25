@@ -1,7 +1,7 @@
 # Deep Metric Similarity Clustering
 Authors: Shuanglu Dai, Pengyu Su and Hong Man
 
-This repository implements deep metric similarity clustering (DMSC), a clustering algorithm incorporates deep network representation. We showed self-supervised learning of deep metric further boosts the clustering performs on both images and data vectors.
+This repository implements deep metric similarity clustering (DMSC), a clustering algorithm incorporates deep network representation. We showed self-supervised learning of deep metric further boosts the clustering performance on images and data vectors.
 
 ## Dependencies
 
