@@ -18,7 +18,7 @@ Note: as no advanced package dependency and installation is required, this code 
 python dmClusteringEval.py
 ```
 
-## Please kindly refer to our published work if this code is used for research purpose
+## Please kindly refer to our published work if this code is used for research purposes
 
 ```
 @inproceedings{dai2020deep,
