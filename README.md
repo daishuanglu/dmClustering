@@ -18,14 +18,14 @@ Note: as no advanced package dependency and installation is required, this code 
 python dmClusteringEval.py
 ```
 
-## Please kindly refer to our published work if used for research purpose
+## Please kindly refer to our published work if this code is used for research purpose
 
 ```
-@inproceedings{dai2020,
-  author = {Fujita, Yasuhiro and Maeda, Shin-ichi},
-  booktitle = {ICML},
-  title = {{Clipped Action Policy Gradient}}
-  year = {2018}
+@inproceedings{dai2020deep,
+  title={Deep Metric Similarity Clustering},
+  author={Dai, Shuanglu, Su, Pengyu and Man, Hong},
+  booktitle={Proceedings of the 15th International Conference on Data Science (ICDATA 2020)},
+  year={2020}
 }
 ```
 
