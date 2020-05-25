@@ -7,7 +7,7 @@ If you use this code/model for your research, please cite the following paper:
 @inproceedings{dai2020deep,
   title={Deep Metric Similarity Clustering},
   author={Dai, Shuanglu, Su, Pengyu and Man, Hong},
-  booktitle={Proceedings of the 15th International Conference on Data Science (ICDATA 2020)},
+  booktitle={Proceedings of the 16th International Conference on Data Science (ICDATA 2020)},
   year={2020}
 }
 ```
