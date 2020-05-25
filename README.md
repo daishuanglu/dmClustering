@@ -18,7 +18,7 @@ If you use this code/model for your research, please cite the following paper:
 - sklearn
 - numpy, scipy
 
-Note: As no package installation issues, this code is left as it is. 
+Note: As no package installation issues is spotted, this code is left as it is. 
 
 ## How to run
 
