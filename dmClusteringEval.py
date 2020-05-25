@@ -27,6 +27,7 @@ def avgPred(ntimes,loader,testcase):
     nmi = normalized_mutual_info_score(target, pred.numpy())
     acc = group_label_acc(target, pred.numpy())
     return acc,nmi
+
 def metricCluster(dfx,ratio=0.0):
     N = dfx.size(0)
     sim = dfx.detach() > ratio
@@ -54,6 +55,7 @@ class shapeNet(nn.Module):
         x1 = x1.view(x1.size(0), self.dim)
         x1= self.linFeature(x1)
         return x1
+
 def testSpiral(loader,averaging=False):
     target, inputs, nfeat, nsamples = loader.spiral()
     if type(inputs) is np.ndarray:
@@ -78,6 +80,7 @@ def testSpiral(loader,averaging=False):
         return acc,nmi
     else:
         return group_label(target, labels)
+
 def testPath(loader,averaging=False):
     target, inputs, nfeat, nsamples = loader.path()
     inputs = torch.from_numpy(inputs).unsqueeze(1).float()
@@ -99,6 +102,7 @@ def testPath(loader,averaging=False):
         return acc, nmi
     else:
         return group_label(target, labels)
+
 def testCompound(loader,averaging=False):
     target, inputs, nfeat, nsamples = loader.compound()
     inputs = torch.from_numpy(inputs).unsqueeze(1).float()
@@ -137,6 +141,7 @@ class bioNet(nn.Module):
         x1 = x1.view(x1.size(0), self.dim)
         x1=self.feature(x1)
         return x1
+
 def testYeast(loader, averaging=False):
     target, data, nfeat, nsamples = loader.yeast()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -159,6 +164,7 @@ def testYeast(loader, averaging=False):
         return acc,nmi
     else:
         return group_label_acc(target, labels)
+
 def testGlass(loader,averaging=False):
     target, data, nfeat, nsamples = loader.glass()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -181,6 +187,7 @@ def testGlass(loader,averaging=False):
         return acc,nmi
     else:
         return group_label_acc(target, labels)
+
 def testEcoli(loader, averaging=False):
     target, data, nfeat, nsamples = loader.ecoli()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -203,6 +210,7 @@ def testEcoli(loader, averaging=False):
         return acc,nmi
     else:
         return group_label(target, labels)
+
 def testMove(loader,averaging=False):
     target, data, nfeat, nsamples = loader.movement()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -224,6 +232,7 @@ def testMove(loader,averaging=False):
         return acc,nmi
     else:
         return group_label(target, labels)
+
 def testCoil(loader):
     target, data, nfeat, nsamples = loader.coil()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -242,6 +251,7 @@ def testCoil(loader):
     acc = group_label_acc(target, labels)
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     return acc,nmi
+
 def testStock(loader):
     target, data, nfeat, nsamples = loader.stock()
     print(nsamples, ' samples', nfeat, ' dimensions ,targets:', Counter(target))
@@ -277,6 +287,7 @@ class objectNet1d(nn.Module):
         x= x.view(-1,self.dim)
         x = self.feature(x)
         return x
+
 def testCoil20(loader, pretrained=True):
     target, data, nfeat, nsamples = loader.coil20()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -319,6 +330,7 @@ class faceNet1d(nn.Module):
         x1=x1.view(x1.size(0),self.dim)
         x1=self.feature(x1)
         return x1
+
 def testUmist(loader):
     target, data, nfeat, nsamples = loader.umist()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -339,6 +351,7 @@ def testUmist(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc,nmi
+
 def testJaffe(loader,pretrained=True):
     target, data, nfeat, nsamples = loader.jaffe()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -363,6 +376,7 @@ def testJaffe(loader,pretrained=True):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc,nmi
+
 def testUsps(loader,pretrained=True ):
     target, data, nfeat, nsamples = loader.usps()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -408,6 +422,7 @@ def testMSRCV(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testCal7(loader):
     target, data, nfeat, nsamples = loader.cal7()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -428,6 +443,7 @@ def testCal7(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testCal20(loader):
     target, data, nfeat, nsamples = loader.cal20()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -448,6 +464,7 @@ def testCal20(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testORL(loader):
     target, data, nfeat, nsamples = loader.orl()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -468,6 +485,7 @@ def testORL(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testCol20(loader):
     target, data, nfeat, nsamples = loader.col20()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -488,6 +506,7 @@ def testCol20(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testEYB10(loader):
     target, data, nfeat, nsamples = loader.eyb(10)
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -508,6 +527,7 @@ def testEYB10(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testEYB20(loader):
     target, data, nfeat, nsamples = loader.eyb(20)
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -528,6 +548,7 @@ def testEYB20(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testEYB30(loader):
     target, data, nfeat, nsamples = loader.eyb(30)
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -548,6 +569,7 @@ def testEYB30(loader):
     print('Group accuracy: {:.2f}%'.format(acc * 100))
     print('Number of clusters: {:d} '.format(len(ctr)))
     return acc, nmi
+
 def testCol100(loader):
     target, data, nfeat, nsamples = loader.col100()
     inputs = torch.from_numpy(data).unsqueeze(1).float()
@@ -572,6 +594,7 @@ def testCol100(loader):
 def centering(inputs):
     N,dim=inputs.size()
     return inputs-inputs.mean(0).expand(N,dim)
+
 def spcl(dfx,Nc,Nfactor):
     N = dfx.size(0)
     S = ((dfx + dfx.t()) / 2).float()
@@ -601,7 +624,7 @@ def testMoons(tosave=False):
     model = dmClustering(shapeNet(dim=nfeat), Nfactor=Nfactor, Nclusters=Nclusters)
     F, labels = model.unSupervisedLearner(inputsTensor, Nepochs=10, Ninner=1, sparsity=Nsparse, bsize=batchsize,
                                           lamda=1)
-    conn = model.conn.numpy()
+
     print('clusters:', ''.join(str(l) for l in labels))
     print(Counter(labels))
     nmi = normalized_mutual_info_score(target, labels)
@@ -650,6 +673,7 @@ def testMoons(tosave=False):
         plt.show(block=False)
         time.sleep(5)
         return 1
+
 def testThreeCircles(tosave=False):
     inputs1, target1 = datasets.make_circles(n_samples=200, noise=0.05, factor=.3)
     inputs2, target2 = datasets.make_circles(n_samples=200, noise=0.05, factor=.6)
@@ -667,7 +691,7 @@ def testThreeCircles(tosave=False):
     batchsize = 25
     model = dmClustering(shapeNet(dim=nfeat), Nfactor=Nfactor, Nclusters=Nclusters)
     F, labels = model.unSupervisedLearner(inputsTensor, Nepochs=8, Ninner=1, sparsity=Nsparse, bsize=batchsize, lamda=1)
-    conn = model.conn.numpy()
+
     print('clusters:', ''.join(str(l) for l in labels))
     print(Counter(labels))
     nmi = normalized_mutual_info_score(target, labels)
@@ -715,6 +739,7 @@ def testThreeCircles(tosave=False):
         plt.show(block=False)
         time.sleep(5)
         return 1
+
 def testBlobs(tosave=False):
     inputs, target = datasets.make_blobs(n_samples=600, cluster_std=[2.0, 1.5, 1.0])
     nsamples, nfeat = inputs.shape
@@ -727,7 +752,7 @@ def testBlobs(tosave=False):
     batchsize = 25
     model = dmClustering(shapeNet(dim=nfeat), Nfactor=Nfactor, Nclusters=Nclusters)
     F, labels = model.unSupervisedLearner(inputsTensor, Nepochs=6, Ninner=1, sparsity=Nsparse, bsize=batchsize, lamda=1)
-    conn = model.conn.numpy()
+
     print('clusters:', ''.join(str(l) for l in labels))
     print(Counter(labels))
     nmi = normalized_mutual_info_score(target, labels)
@@ -777,12 +802,37 @@ def testBlobs(tosave=False):
         return 1
 
 if __name__=="__main__":
-    folder = "F:/datasets/UCIml/ClusteringTest"
-    loader=dataReader(folder=folder)
+    folder = "./data"
+    loader = dataReader(folder=folder)
 
-    acc, nmi = testEYB30(loader)
-    #acc, nmi = testUsps(loader,pretrained=True)
-    #acc,nmi=avgPred(10, loader1d, testSpiral)
-    #print('Max-vote Clustering accuracy: {:.2f}%, NMI: {:.2f}%'.format(acc * 100,nmi*100 ))
+    testSpiral(loader)
+    testPath(loader)
+    testCompound(loader)
+    testYeast(loader)
+    testGlass(loader)
+    testYeast(loader)
+    testEcoli(loader)
+    testMove(loader)
+    testCoil(loader)
+    testStock(loader)
+
+    testCoil20(loader)
+    testEYB10(loader)
+    testEYB20(loader)
+    testEYB30(loader)
+    testCal7(loader)
+    testCal20(loader)
+    testMSRCV(loader)
+    testORL(loader)
+    testCol20(loader)
+    testCol100(loader)
+
+    testBlobs()
+    testMoons()
+    testThreeCircles()
+
+    testJaffe(loader,pretrained=True)
+    testUsps(loader,pretrained=True)
+
 
 

@@ -192,7 +192,7 @@ class dmClustering():
         iddis = []
         for ii in range(N):
             idsim.append( sim[ii,:].nonzero().t()[0].numpy())
-            iddis.append( (1-sim[ii,:]).nonzero().t()[0].numpy())
+            iddis.append( (1-sim[ii,:].long()).nonzero().t()[0].numpy())
         id1=torch.Tensor(N*2*bsize).long()
         criterion=nn.MSELoss()
         optimizer = torch.optim.Adam(self.net.parameters(), lr=0.01)
@@ -281,56 +281,4 @@ class dmNN1d(nn.Module):
         return x1
 
 if __name__=="__main__":
-    print('creating example 2D dataset ...')
-    N = 1500;C = 3;H = 64;W = 64
-    inputs = torch.Tensor(N, C, H, W)
-    y = torch.Tensor([1] * 500 + [2] * 500 + [3] * 500)
-    for i in range(N):
-        img = torch.Tensor(C, H, W).fill_(0)
-        if i < 500:
-            img[:, (int(H / 2) - 5):(int(H / 2) + 5), (int(W / 2) - 5): (int(W / 2) + 5)] = torch.rand(3, 10, 10) + 1
-        elif i < 1000:
-            img[:, (int(H / 2) - 8):(int(H / 2) + 8), (int(W / 2) - 8): (int(W / 2) + 8)] = torch.rand(3, 16, 16) - 1
-        else:
-            img[:, (int(H / 2) - 8):(int(H / 2) + 8), (int(W / 2) - 8): (int(W / 2) + 8)] = torch.rand(3, 16, 16) + 1
-        inputs[i] = img
-    Nclusters=3
-    Nsparse=10
-    batchsize=50
-    model=dmClustering( dmNN(),Nclusters=Nclusters)
-    F, labels=model.learner(inputs,Nepochs=10,sparsity=Nsparse,bsize=batchsize,lamda=1)
-    print(F)
-    print('clusters:',''.join(str(l) for l in labels))
-    print(Counter(labels))
-    nmi=normalized_mutual_info_score(y, labels)
-    print('Normalized mutual information(NMI): {:.2f}%'.format(nmi*100))
-    acc=group_label_acc(y, labels)
-    print('Group accuracy: {:.2f}%'.format(acc * 100))
-
-
-    print('creating example 1D dataset ...')
-    N = 1500
-    C = 1
-    L = 128
-    inputs = torch.Tensor(N, C, L)
-    y = torch.Tensor([1] * 500 + [2] * 500 + [3] * 500)
-    for i in range(N):
-        img = torch.Tensor(C, L).fill_(0)
-        if i < 500:
-            inputs[i] = torch.rand(C, L) + 1
-        elif i < 1000:
-            inputs[i] = torch.rand(C, L) - 1
-        else:
-            inputs[i] = torch.rand(C, L)
-    Nclusters = 3
-    Nsparse = 10
-    batchsize = 50
-    model = dmClustering(dmNN1d(), Nclusters=Nclusters)
-    F, labels = model.learner(inputs, Nepochs=10, sparsity=Nsparse, bsize=batchsize, lamda=.1)
-    print(F)
-    print('clusters:', ''.join(str(l) for l in labels))
-    print(Counter(labels))
-    nmi = normalized_mutual_info_score(y, labels)
-    print('Normalized mutual information(NMI): {:.2f}%'.format(nmi * 100))
-    acc = group_label_acc(y, labels)
-    print('Group accuracy: {:.2f}%'.format(acc * 100))
+    pass
